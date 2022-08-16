@@ -1,14 +1,10 @@
 import { takeEvery, all } from "redux-saga/effects";
 import { increment } from "../features/counter/counterSlice";
-import counterSaga from "../features/counter/counterSaga";
-
-function* counter() {
-  console.log("counter");
-}
+import authSaga from "../features/auth/authSaga";
 
 function* rootSaga() {
   console.log("rootSaga");
-  yield all([counter(), counterSaga()]);
+  yield all([authSaga()]);
 }
 
 export default rootSaga;
