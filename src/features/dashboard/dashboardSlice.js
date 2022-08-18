@@ -31,10 +31,10 @@ const dashboardSlice = createSlice({
       state.statistics = action.payload;
     },
     setHighestStudentList: (state, action) => {
-      state.highestStudentList = action.payload;
+      state.highestStudentList = action.payload.data;
     },
     setLowestStudentList: (state, action) => {
-      state.lowestStudentList = action.payload;
+      state.lowestStudentList = action.payload.data;
     },
     setRankingByCityList: (state, action) => {
       state.rankingByCityList = action.payload;

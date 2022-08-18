@@ -64,6 +64,7 @@ function* fetchRankingByCityList() {
   const rankingByCityList = responseList.map((x, index) => ({
     cityId: cityList[index].code,
     rankingList: x.data,
+    cityName: cityList[index].name,
   }));
 
   yield put(dashboardActions.setRankingByCityList(rankingByCityList));
