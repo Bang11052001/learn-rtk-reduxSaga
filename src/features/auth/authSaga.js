@@ -13,7 +13,7 @@ function* LoginRequest(payload) {
       })
     );
 
-    yield history.push("/admin");
+    yield history.push("/admin/dashboard");
   } catch {
     yield put(authActions.loginFailed("login fail"));
   }

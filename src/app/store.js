@@ -1,15 +1,16 @@
 import { configureStore } from "@reduxjs/toolkit";
-import counterReducer from "../features/counter/counterSlice";
 import createSagaMiddleware from "redux-saga";
-import rootSaga from "./rootSaga";
+
 import authSlice from "../features/auth/authSlice";
+import dashboardSlice from "../features/dashboard/dashboardSlice";
+import rootSaga from "./rootSaga";
 
 const sagaMiddleware = createSagaMiddleware();
 
 export const store = configureStore({
   reducer: {
-    counter: counterReducer,
     auth: authSlice,
+    dashboard: dashboardSlice,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(sagaMiddleware),

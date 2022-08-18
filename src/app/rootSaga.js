@@ -1,10 +1,10 @@
-import { takeEvery, all } from "redux-saga/effects";
-import { increment } from "../features/counter/counterSlice";
+import { all } from "redux-saga/effects";
 import authSaga from "../features/auth/authSaga";
+import dashboardSaga from "../features/dashboard/dashboardSaga";
 
 function* rootSaga() {
   console.log("rootSaga");
-  yield all([authSaga()]);
+  yield all([authSaga(), dashboardSaga()]);
 }
 
 export default rootSaga;

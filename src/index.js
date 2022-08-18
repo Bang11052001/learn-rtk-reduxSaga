@@ -14,14 +14,12 @@ const container = document.getElementById("root");
 const root = createRoot(container);
 
 root.render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <HistoryRouter history={history}>
-        <CssBaseline />
-        <App />
-      </HistoryRouter>
-    </Provider>
-  </React.StrictMode>
+  <Provider store={store}>
+    <HistoryRouter history={history}>
+      <CssBaseline />
+      <App />
+    </HistoryRouter>
+  </Provider>
 );
 
 // If you want to start measuring performance in your app, pass a function

@@ -1,15 +1,36 @@
 import axiosClient from "./axiosClient";
 
-const cityApi = {
-  getAll: async () => {
-    const res = await axiosClient.get("/cities", {
+const studentsApi = {
+  getAll: async (params) => {
+    const res = await axiosClient.get("/students", { params });
+    return res;
+  },
+  getById: async (id) => {
+    const res = await axiosClient.get(`/students/${id}`, {
       params: {
-        _page: 1,
-        _limit: 10,
+        id: id,
+      },
+    });
+    return res;
+  },
+  add: async (params) => {
+    const res = await axiosClient.post("/students", { params });
+    return res;
+  },
+  update: async (params) => {
+    const res = await axiosClient.patch(`/students/${params.id}`, {
+      params,
+    });
+    return res;
+  },
+  remove: async (id) => {
+    const res = await axiosClient.delete(`/students/${id}`, {
+      params: {
+        id: id,
       },
     });
     return res;
   },
 };
 
-export default cityApi;
+export default studentsApi;
