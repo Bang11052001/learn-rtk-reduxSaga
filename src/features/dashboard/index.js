@@ -1,5 +1,5 @@
 import { PeopleAlt } from "@mui/icons-material";
-import { Box, Grid, LinearProgress, Typography } from "@mui/material";
+import { Box, Grid, LinearProgress, Typography, useTheme } from "@mui/material";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { StudentsRankingList, Widget } from "./components";
@@ -7,6 +7,7 @@ import StatisticItem from "./components/StatisticItem";
 import { dashboardActions } from "./dashboardSlice";
 
 function DashBoard() {
+  const theme = useTheme();
   const dispatch = useDispatch();
   const {
     isLoading,
@@ -31,16 +32,20 @@ function DashBoard() {
   }, [dispatch]);
 
   return (
-    <Box>
+    <Box sx={{ position: "relative", paddingTop: theme.spacing(1) }}>
       {/* Loading */}
       {isLoading && (
         <LinearProgress
-          sx={{ position: "absolute", top: "4px", width: "100%" }}
+          sx={{
+            position: "absolute",
+            width: "100%",
+            marginTop: theme.spacing(-2),
+          }}
         />
       )}
 
       {/* Statistic  */}
-      <Grid container spacing={2} sx={{ position: "relative" }}>
+      <Grid container spacing={2}>
         {Object.keys(statistics).map((curr, index) => {
           return (
             <Grid key={index} item xs={12} sm={12} md={4} lg={3} xl={3}>
