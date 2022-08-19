@@ -7,7 +7,6 @@ import TableRow from "@mui/material/TableRow";
 import * as React from "react";
 
 function StudentsRankingList({ data }) {
-  console.log(data);
   return (
     <TableContainer>
       <Table aria-label="simple table">

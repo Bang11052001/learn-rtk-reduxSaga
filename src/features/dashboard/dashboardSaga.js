@@ -52,7 +52,7 @@ function* fetchRankingByCityList() {
   const newList = cityList.map((x) =>
     call(studentsApi.getAll, {
       _page: 1,
-      __limit: 5,
+      _limit: 5,
       _sort: "mark",
       _order: "desc",
       city: x.code,

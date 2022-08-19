@@ -38,7 +38,7 @@ function AdminLayout() {
       <BoxMain>
         <Routes>
           <Route path="/dashboard" element={<DashBoard />} />
-          <Route path="/students" element={<StudentFeature />} />
+          <Route path="/students/*" element={<StudentFeature />} />
         </Routes>
       </BoxMain>
     </Root>

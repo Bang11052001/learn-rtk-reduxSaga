@@ -53,6 +53,7 @@ function DashBoard() {
           );
         })}
       </Grid>
+
       {/* Students Ranking List  */}
       <Box mt={5}>
         <Typography variant="h5" align="left">
@@ -85,7 +86,15 @@ function DashBoard() {
           <Grid container spacing={3}>
             {rankingByCityList.map((curr, index) => {
               return (
-                <Grid key={curr.id} item xs={12} sm={6} md={6} lg={3} xl={3}>
+                <Grid
+                  key={curr.cityId}
+                  item
+                  xs={12}
+                  sm={6}
+                  md={6}
+                  lg={3}
+                  xl={3}
+                >
                   <Widget title={`TP. ${curr.cityName}`}>
                     <StudentsRankingList data={curr.rankingList} />
                   </Widget>
