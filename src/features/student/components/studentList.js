@@ -8,12 +8,8 @@ import TableRow from "@mui/material/TableRow";
 import * as React from "react";
 import { useSelector } from "react-redux";
 import { capitalizeString, getMarkColor } from "../../../utils";
-import { selectCityMap } from "../../city/citySlice";
 
-function StudentList() {
-  const { list, filter, pagination } = useSelector((state) => state.student);
-  const cityMap = useSelector(selectCityMap);
-
+function StudentList({ list, cityMap }) {
   const theme = useTheme();
 
   return (

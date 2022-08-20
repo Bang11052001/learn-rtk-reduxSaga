@@ -33,6 +33,8 @@ const studentSlice = createSlice({
     setFilter(state, action) {
       state.filter = action.payload;
     },
+
+    setFilterWithDebounce(state, action) {},
   },
 });
 
