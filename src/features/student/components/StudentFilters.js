@@ -1,6 +1,7 @@
 import { Search } from "@mui/icons-material";
 import {
   Box,
+  Button,
   FormControl,
   Grid,
   InputLabel,
@@ -8,8 +9,11 @@ import {
   Select,
   TextField,
 } from "@mui/material";
+import { useRef } from "react";
 
-function StudentFilters({ filter, onSearchChange, cityList, onCityChange }) {
+function StudentFilters({ filter, onSearchChange, cityList, onChange }) {
+  const searchRef = useRef();
+
   const hanleSearchChange = (e) => {
     if (!onSearchChange) return;
 
@@ -23,7 +27,7 @@ function StudentFilters({ filter, onSearchChange, cityList, onCityChange }) {
   };
 
   const handleCityChange = (e) => {
-    if (!onCityChange) return;
+    if (!onChange) return;
 
     const newFilter = {
       ...filter,
@@ -31,16 +35,46 @@ function StudentFilters({ filter, onSearchChange, cityList, onCityChange }) {
       city: e.target.value || undefined,
     };
 
-    onCityChange(newFilter);
+    onChange(newFilter);
   };
 
-  console.log(cityList);
+  const handleSortChange = (e) => {
+    if (!onChange) return;
+
+    const value = e.target.value;
+    const [_sort, _order] = value.split(".");
+
+    const newFilter = {
+      ...filter,
+      _page: 1,
+      _order: _order || undefined,
+      _sort: _sort || undefined,
+    };
+
+    onChange(newFilter);
+  };
+
+  const handleClearFilter = (e) => {
+    if (!onChange) return;
+
+    const newFilter = {
+      ...filter,
+      _page: 1,
+      _order: undefined,
+      _sort: undefined,
+      city: undefined,
+    };
+
+    searchRef.current.value = "";
+    onChange(newFilter);
+  };
 
   return (
-    <Grid container columnSpacing={2}>
+    <Grid container spacing={2}>
       <Grid item xs={12} md={6} lg={6}>
         <Box>
           <TextField
+            inputRef={searchRef}
             id="outlined-basic"
             label="Search by name"
             variant="outlined"
@@ -53,6 +87,7 @@ function StudentFilters({ filter, onSearchChange, cityList, onCityChange }) {
           />
         </Box>
       </Grid>
+
       <Grid item xs={12} md={6} lg={3}>
         <FormControl fullWidth size="small">
           <InputLabel>Filter by City</InputLabel>
@@ -69,6 +104,35 @@ function StudentFilters({ filter, onSearchChange, cityList, onCityChange }) {
             ))}
           </Select>
         </FormControl>
+      </Grid>
+
+      <Grid item xs={12} md={6} lg={2}>
+        <FormControl fullWidth size="small">
+          <InputLabel>Sort</InputLabel>
+          <Select
+            label="Sort"
+            onChange={handleSortChange}
+            value={filter._sort ? `${filter._sort}.${filter._order}` : ""}
+          >
+            <MenuItem value="">No Sort</MenuItem>
+            <MenuItem value="mark.asc">Mark asc</MenuItem>
+            <MenuItem value="mark.desc">Mark desc</MenuItem>
+            <MenuItem value="name.asc">Name asc</MenuItem>
+            <MenuItem value="name.desc">Name desc</MenuItem>
+          </Select>
+        </FormControl>
+      </Grid>
+
+      <Grid item xs={12} md={6} lg={1}>
+        <Button
+          variant="outlined"
+          color="primary"
+          fullWidth
+          size="large"
+          onClick={handleClearFilter}
+        >
+          Clear
+        </Button>
       </Grid>
     </Grid>
   );

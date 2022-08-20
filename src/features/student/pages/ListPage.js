@@ -13,6 +13,7 @@ import { selectCityList, selectCityMap } from "../../city/citySlice";
 import { StudentList } from "../components";
 import StudentFilters from "../components/StudentFilters";
 import { studentActions } from "../studentSlice";
+import studentApi from "../../../api/studentsApi";
 
 function ListPage() {
   const theme = useTheme();
@@ -35,8 +36,18 @@ function ListPage() {
     dispatch(studentActions.setFilterWithDebounce(newFilter));
   };
 
-  const handleCityChange = (newFilter) => {
+  const handleChange = (newFilter) => {
     dispatch(studentActions.setFilter(newFilter));
+  };
+
+  const handleRemove = async (student) => {
+    try {
+      await studentApi.remove(student.id);
+      const newFilter = { ...filter };
+      dispatch(studentActions.fetchStudentList(newFilter));
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -71,13 +82,13 @@ function ListPage() {
           filter={filter}
           onSearchChange={handleSearchChange}
           cityList={cityList}
-          onCityChange={handleCityChange}
+          onChange={handleChange}
         ></StudentFilters>
       </Box>
 
       {/* Student List  */}
       <Paper sx={{ border: `1px solid ${theme.palette.divider}` }}>
-        <StudentList list={list} cityMap={cityMap} />
+        <StudentList list={list} cityMap={cityMap} onRemove={handleRemove} />
       </Paper>
 
       {/* Pagination  */}
