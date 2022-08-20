@@ -9,11 +9,12 @@ import {
 } from "@mui/material";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import studentApi from "../../../api/studentsApi";
 import { selectCityList, selectCityMap } from "../../city/citySlice";
 import { StudentList } from "../components";
 import StudentFilters from "../components/StudentFilters";
 import { studentActions } from "../studentSlice";
-import studentApi from "../../../api/studentsApi";
 
 function ListPage() {
   const theme = useTheme();
@@ -73,7 +74,10 @@ function ListPage() {
         <Typography variant="h5" align="left">
           Students
         </Typography>
-        <Button variant="contained">Add new Student</Button>
+
+        <Link style={{ textDecoration: "none" }} to={`/admin/students/add`}>
+          <Button variant="contained">Add new Student</Button>
+        </Link>
       </Box>
 
       {/* Search  */}

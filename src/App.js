@@ -1,10 +1,8 @@
-import React, { useEffect } from "react";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import { LoginPage } from "./features/auth/pages";
-import { AdminLayout } from "./components/Layout";
+import React from "react";
+import { Route, Routes } from "react-router-dom";
 import { NotFound, PrivateRoute } from "./components/Common";
-
-import "./App.css";
+import { AdminLayout } from "./components/Layout";
+import { LoginPage } from "./features/auth/pages";
 
 function App() {
   return (

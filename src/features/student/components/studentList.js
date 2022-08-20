@@ -15,7 +15,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import { useState } from "react";
-import { capitalizeString, getMarkColor } from "../../../utils";
+import { capitalizeString, getMarkColor, history } from "../../../utils";
 
 function StudentList({ list, cityMap, onRemove }) {
   const theme = useTheme();
@@ -30,6 +30,10 @@ function StudentList({ list, cityMap, onRemove }) {
   const handleRemoveConfirm = () => {
     onRemove(selectedStudent);
     setOpen(false);
+  };
+
+  const hanleEdit = (student) => {
+    history.push(`/admin/students/${student.id}`);
   };
 
   return (
@@ -72,6 +76,7 @@ function StudentList({ list, cityMap, onRemove }) {
                     variant="contained"
                     color="primary"
                     sx={{ marginRight: theme.spacing(1) }}
+                    onClick={() => hanleEdit(student)}
                   >
                     Edit
                   </Button>
