@@ -4,16 +4,15 @@ import {
   LinearProgress,
   Pagination,
   Paper,
-  TextField,
   Typography,
   useTheme,
 } from "@mui/material";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { selectCityList, selectCityMap } from "../../city/citySlice";
 import { StudentList } from "../components";
-import { studentActions } from "../studentSlice";
-import { selectCityMap } from "../../city/citySlice";
 import StudentFilters from "../components/StudentFilters";
+import { studentActions } from "../studentSlice";
 
 function ListPage() {
   const theme = useTheme();
@@ -22,6 +21,7 @@ function ListPage() {
     (state) => state.student
   );
   const cityMap = useSelector(selectCityMap);
+  const cityList = useSelector(selectCityList);
 
   useEffect(() => {
     dispatch(studentActions.fetchStudentList(filter));
@@ -33,6 +33,10 @@ function ListPage() {
 
   const handleSearchChange = (newFilter) => {
     dispatch(studentActions.setFilterWithDebounce(newFilter));
+  };
+
+  const handleCityChange = (newFilter) => {
+    dispatch(studentActions.setFilter(newFilter));
   };
 
   return (
@@ -66,6 +70,8 @@ function ListPage() {
         <StudentFilters
           filter={filter}
           onSearchChange={handleSearchChange}
+          cityList={cityList}
+          onCityChange={handleCityChange}
         ></StudentFilters>
       </Box>
 

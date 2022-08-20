@@ -1,7 +1,15 @@
 import { Search } from "@mui/icons-material";
-import { Box, Grid, TextField } from "@mui/material";
+import {
+  Box,
+  FormControl,
+  Grid,
+  InputLabel,
+  MenuItem,
+  Select,
+  TextField,
+} from "@mui/material";
 
-function StudentFilters({ filter, onSearchChange }) {
+function StudentFilters({ filter, onSearchChange, cityList, onCityChange }) {
   const hanleSearchChange = (e) => {
     if (!onSearchChange) return;
 
@@ -14,8 +22,22 @@ function StudentFilters({ filter, onSearchChange }) {
     onSearchChange(newFilter);
   };
 
+  const handleCityChange = (e) => {
+    if (!onCityChange) return;
+
+    const newFilter = {
+      ...filter,
+      _page: 1,
+      city: e.target.value || undefined,
+    };
+
+    onCityChange(newFilter);
+  };
+
+  console.log(cityList);
+
   return (
-    <Grid container>
+    <Grid container columnSpacing={2}>
       <Grid item xs={12} md={6} lg={6}>
         <Box>
           <TextField
@@ -30,6 +52,23 @@ function StudentFilters({ filter, onSearchChange }) {
             onChange={(e) => hanleSearchChange(e)}
           />
         </Box>
+      </Grid>
+      <Grid item xs={12} md={6} lg={3}>
+        <FormControl fullWidth size="small">
+          <InputLabel>Filter by City</InputLabel>
+          <Select
+            label="Filter by City"
+            onChange={handleCityChange}
+            value={filter.city || ""}
+          >
+            <MenuItem value="">All</MenuItem>
+            {cityList.map((city, index) => (
+              <MenuItem key={index} value={city.code}>
+                {city.name}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
       </Grid>
     </Grid>
   );
