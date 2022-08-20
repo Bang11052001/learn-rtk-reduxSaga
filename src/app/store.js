@@ -5,6 +5,7 @@ import authSlice from "../features/auth/authSlice";
 import dashboardSlice from "../features/dashboard/dashboardSlice";
 import rootSaga from "./rootSaga";
 import studentSlice from "../features/student/studentSlice";
+import { citySlice } from "../features/city";
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -13,6 +14,7 @@ export const store = configureStore({
     auth: authSlice,
     dashboard: dashboardSlice,
     student: studentSlice,
+    city: citySlice,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(sagaMiddleware),

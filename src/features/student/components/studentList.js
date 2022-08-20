@@ -1,4 +1,4 @@
-import { Button, useTheme } from "@mui/material";
+import { Box, Button, useTheme } from "@mui/material";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -7,9 +7,13 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import * as React from "react";
 import { useSelector } from "react-redux";
+import { capitalizeString, getMarkColor } from "../../../utils";
+import { selectCityMap } from "../../city/citySlice";
 
 function StudentList() {
   const { list, filter, pagination } = useSelector((state) => state.student);
+  const cityMap = useSelector(selectCityMap);
+
   const theme = useTheme();
 
   return (
@@ -35,9 +39,15 @@ function StudentList() {
                 {student.id}
               </TableCell>
               <TableCell>{student.name}</TableCell>
-              <TableCell>{student.gender}</TableCell>
-              <TableCell>{student.mark}</TableCell>
-              <TableCell>{student.city}</TableCell>
+              <TableCell>{capitalizeString(student.gender)}</TableCell>
+              <TableCell>
+                <Box color={getMarkColor(student.mark)} fontWeight="bold">
+                  {student.mark}
+                </Box>
+              </TableCell>
+              <TableCell>
+                {cityMap[student.city] ? cityMap[student.city].name : undefined}
+              </TableCell>
               <TableCell align="right">
                 <Button
                   variant="contained"
