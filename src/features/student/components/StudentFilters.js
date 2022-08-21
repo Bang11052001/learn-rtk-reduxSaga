@@ -63,6 +63,7 @@ function StudentFilters({ filter, onSearchChange, cityList, onChange }) {
       _order: undefined,
       _sort: undefined,
       city: undefined,
+      name_like: undefined,
     };
 
     searchRef.current.value = "";

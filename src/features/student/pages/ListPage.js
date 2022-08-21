@@ -46,7 +46,7 @@ function ListPage() {
     try {
       await studentApi.remove(student.id);
 
-      toast.success("Delete success!");
+      // toast.success("Delete success!");
       const newFilter = { ...filter };
       dispatch(studentActions.fetchStudentList(newFilter));
     } catch (err) {
