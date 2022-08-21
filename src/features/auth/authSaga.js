@@ -22,7 +22,7 @@ function* LoginRequest(payload) {
 function* logoutRequest(payload) {
   yield delay(500);
   localStorage.removeItem("access_token");
-  yield history.push("/login");
+  yield history.push("/");
 }
 
 function* watchLoginFlow() {
