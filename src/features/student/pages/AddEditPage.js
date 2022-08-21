@@ -4,7 +4,7 @@ import { Box } from "@mui/system";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import studentsApi from "../../../api/studentsApi";
-import StudentForm from "../components/StudentForm";
+import { StudentForm } from "../components";
 
 function AddEditPage() {
   const params = useParams();
