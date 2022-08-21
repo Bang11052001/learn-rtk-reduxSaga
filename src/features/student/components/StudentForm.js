@@ -1,17 +1,17 @@
-import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
 import { Alert, Box, Button, CircularProgress } from "@mui/material";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { useSelector } from "react-redux";
+import { toast } from "react-toastify";
+import * as yup from "yup";
 import {
   InputField,
   RadioGroupField,
   SelectField,
 } from "../../../components/FormFields";
-import { useSelector } from "react-redux";
-import { selectCityOptions } from "../../city/citySlice";
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
 import { history } from "../../../utils";
-
-import { useState } from "react";
+import { selectCityOptions } from "../../city/citySlice";
 
 function StudentForm({ initialValues, onSubmit }) {
   const cityOptions = useSelector(selectCityOptions);
@@ -65,6 +65,8 @@ function StudentForm({ initialValues, onSubmit }) {
     try {
       setError("");
       await onSubmit(data);
+
+      toast.success("Save success!");
 
       history.push("/admin/students");
     } catch (error) {

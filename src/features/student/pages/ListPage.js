@@ -10,6 +10,7 @@ import {
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 import studentApi from "../../../api/studentsApi";
 import { selectCityList, selectCityMap } from "../../city/citySlice";
 import { StudentList } from "../components";
@@ -44,6 +45,8 @@ function ListPage() {
   const handleRemove = async (student) => {
     try {
       await studentApi.remove(student.id);
+
+      toast.success("Delete success!");
       const newFilter = { ...filter };
       dispatch(studentActions.fetchStudentList(newFilter));
     } catch (err) {
