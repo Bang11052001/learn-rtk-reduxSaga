@@ -13,7 +13,7 @@ import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import studentApi from "../../../api/studentsApi";
 import { selectCityList, selectCityMap } from "../../city/citySlice";
-import StudentList from "../components/StudentList";
+import StudentTable from "../components/StudentsTable";
 import StudentFilters from "../components/StudentFilters";
 import { studentActions } from "../studentSlice";
 
@@ -95,7 +95,7 @@ function ListPage() {
 
       {/* Student List  */}
       <Paper sx={{ border: `1px solid ${theme.palette.divider}` }}>
-        <StudentList list={list} cityMap={cityMap} onRemove={handleRemove} />
+        <StudentTable list={list} cityMap={cityMap} onRemove={handleRemove} />
       </Paper>
 
       {/* Pagination  */}
