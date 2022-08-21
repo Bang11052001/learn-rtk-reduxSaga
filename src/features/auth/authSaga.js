@@ -27,8 +27,12 @@ function* logoutRequest(payload) {
 
 function* watchLoginFlow() {
   while (true) {
-    const action = yield take(authActions.loginRequest.type);
-    yield fork(LoginRequest, action.payload);
+    const isLoggedIn = Boolean(localStorage.getItem("access_token"));
+
+    if (!isLoggedIn) {
+      const action = yield take(authActions.loginRequest.type);
+      yield fork(LoginRequest, action.payload);
+    }
 
     yield take(authActions.logoutRequest.type);
     yield fork(logoutRequest);
