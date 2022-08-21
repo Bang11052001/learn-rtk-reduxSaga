@@ -23,7 +23,7 @@ const authSlice = createSlice({
     },
     logoutRequest: (state) => {
       state.isLoggedIn = false;
-      state.currentUser = {};
+      state.currentUser = undefined;
     },
   },
 });
