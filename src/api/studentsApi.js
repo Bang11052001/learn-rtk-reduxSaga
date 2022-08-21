@@ -9,14 +9,12 @@ const studentsApi = {
     const res = await axiosClient.get(`/students/${id}`);
     return res;
   },
-  add: async (params) => {
-    const res = await axiosClient.post(`/students/${params.id}`, { params });
+  add: async (data) => {
+    const res = await axiosClient.post(`/students`, data);
     return res;
   },
-  update: async (params) => {
-    const res = await axiosClient.patch(`/students/${params.id}`, {
-      params,
-    });
+  update: async (data) => {
+    const res = await axiosClient.patch(`/students/${data.id}`, data);
     return res;
   },
   remove: async (id) => {

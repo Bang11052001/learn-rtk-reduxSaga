@@ -33,7 +33,13 @@ function AddEditPage() {
     ...student,
   };
 
-  const handleStudentFormSubmit = () => {};
+  const handleStudentFormSubmit = async (data) => {
+    if (studentId) {
+      await studentsApi.update(data);
+    } else {
+      await studentsApi.add(data);
+    }
+  };
 
   return (
     <Box>
