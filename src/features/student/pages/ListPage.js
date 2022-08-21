@@ -13,7 +13,8 @@ import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import studentApi from "../../../api/studentsApi";
 import { selectCityList, selectCityMap } from "../../city/citySlice";
-import { StudentList, StudentFilters } from "../components";
+import StudentList from "../components/StudentList";
+import StudentFilters from "../components/StudentFilters";
 import { studentActions } from "../studentSlice";
 
 function ListPage() {
